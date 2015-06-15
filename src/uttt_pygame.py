@@ -83,10 +83,34 @@ class UTTTGame(PygameGame):
         return
 
     def paint(self, surface):
-        # Background
-        rect = pygame.Rect(0,0,self.width,self.height)
+    #middle
+        rect = pygame.Rect(self.width/3,self.height/3,self.width/3,self.height/3)
         surface.fill((0,0,0),rect )
-        
+    #bottom right
+        rect = pygame.Rect(self.height/3*2,self.height/3*2,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #top right
+        rect = pygame.Rect(self.width/3*2,0,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #top middle
+        rect = pygame.Rect(self.width/3,0,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #middle left
+        rect = pygame.Rect(0,self.height/3,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #top left
+        rect = pygame.Rect(0,0,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #bottom left
+        rect = pygame.Rect(0,self.height/3*2,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #middle right
+        rect = pygame.Rect(self.height/3*2,self.width/3,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    #bottom middle
+        rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
+        surface.fill((0,0,0),rect )
+    
         # Regular Lines
         for i in range(1,9):
             pygame.draw.line(surface, (255,255,255), (0, i*self.height/9), (self.width, i*self.height/9))
