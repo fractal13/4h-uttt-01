@@ -79,6 +79,7 @@ class UTTTGame(PygameGame):
         if 1 in newbuttons:
             if self.data.GetNextPlayer() != self.data.GetPlayer():
                 # not our turn
+                print "YOU LITTLE REBEL"
                 return
 
             mX,mY = mouse_position[0], mouse_position[1]
@@ -219,9 +220,9 @@ class UTTTGame(PygameGame):
                 y = int((row + .5) * self.height / 9)
                 marker = self.data.GetMarker(board, position)
                 if marker == uttt_data.PLAYER_X:
-                    pygame.draw.circle(surface, (0,0,255), (x, y), 5)
+                    pygame.draw.circle(surface, (0,0,255), (x, y), 14)
                 elif marker == uttt_data.PLAYER_O:
-                    pygame.draw.circle(surface, (255,0,0), (x, y), 5)
+                    pygame.draw.circle(surface, (0,255,0), (x, y), 14)
         return
 
     def drawTextLeft(self, surface, text, color, tX, tY, font):
