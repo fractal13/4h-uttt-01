@@ -19,6 +19,8 @@ class UTTTGame(PygameGame):
         self.a = 0
         self.s = 0
         self.v = 0
+        pygame.font.init()
+        self.font = pygame.font.SysFont("OCR A Extended",17)
         return
 
     def handle_state(self):
@@ -189,6 +191,12 @@ class UTTTGame(PygameGame):
     #bottom middle
         rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
         surface.fill((self.a,0,0),rect )
+
+    # HUD
+        opponent = "You are playing: " + self.data.GetOpponentName()
+        self.drawTextLeft(surface, opponent, (255, 251, 0), 25, 35, self.font)
+
+        
     
         # Regular Lines
         for i in range(1,9):
@@ -215,6 +223,12 @@ class UTTTGame(PygameGame):
                 elif marker == uttt_data.PLAYER_O:
                     pygame.draw.circle(surface, (255,0,0), (x, y), 5)
         return
+
+    def drawTextLeft(self, surface, text, color, tX, tY, font):
+        textobj = font.render(text, False, color)
+        textrect = textobj.get_rect()
+        textrect.bottomleft = (tX, tY)
+        surface.blit(textobj, textrect)
 
 def uttt_pygame_main(data, send_queue):
     game = UTTTGame(600, 600, 30, data, send_queue)
