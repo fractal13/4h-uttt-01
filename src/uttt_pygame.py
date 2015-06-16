@@ -23,6 +23,7 @@ class UTTTGame(PygameGame):
         pygame.mixer.init()
         self.font = pygame.font.SysFont("OCR A Extended",17)
         pygame.mixer.music.load('Mario.mp3')
+        self.goomba = pygame.image.load("goomba.png")
         pygame.mixer.music.play(-1, 0.0)
         self.firstTurn = True
         return
@@ -207,8 +208,10 @@ class UTTTGame(PygameGame):
         self.drawTextLeft(surface, opponent, (255, 251, 0), 25, 35, self.font)
 
         currentTurn = "It is " + self.data.GetNextPlayer() + "'s turn"
-        self.drawTextLeft(surface, currentTurn, (255, 251, 0), 25, 50, self.font)
+        self.drawTextLeft(surface, currentTurn, (255, 251, 0), 25, 45, self.font)
 
+        you = "You are " + self.data.GetPlayer() + "s"
+        self.drawTextLeft(surface, you, (255, 251, 0), 25, 55, self.font)
         
     
         # Regular Lines
@@ -232,7 +235,8 @@ class UTTTGame(PygameGame):
                 y = int((row + .5) * self.height / 9)
                 marker = self.data.GetMarker(board, position)
                 if marker == uttt_data.PLAYER_X:
-                    pygame.draw.circle(surface, (0,0,255), (x, y), 14)
+                    #pygame.draw.circle(surface, (0,0,255), (x, y), 14)
+                    surface.blit(self.goomba, (x, y))
                 elif marker == uttt_data.PLAYER_O:
                     pygame.draw.circle(surface, (0,255,0), (x, y), 14)
         return
