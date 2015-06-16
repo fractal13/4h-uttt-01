@@ -197,6 +197,9 @@ class UTTTGame(PygameGame):
         opponent = "You are playing: " + self.data.GetOpponentName()
         self.drawTextLeft(surface, opponent, (255, 251, 0), 25, 35, self.font)
 
+        currentTurn = "It is " + self.data.GetNextPlayer() + "'s turn"
+        self.drawTextLeft(surface, currentTurn, (255, 251, 0), 25, 50, self.font)
+
         
     
         # Regular Lines
