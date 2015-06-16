@@ -50,6 +50,8 @@ class TTTGUI:
         self.login_box.pack_start(self.password_box,  True, True)
         self.login_box.pack_start(self.login_button,  True, True)
         self.login_box.show()
+
+        # gtk.LinkButton("http://rookie.cs.dixie.edu/game/", label="Visit here to sign up")
         
         return
 
@@ -278,6 +280,7 @@ class TTTGUI:
         state = self.data.GetState()
         print "GTK:CurrentState:", state
         print "next board is", self.data.GetNextBoard()
+        print "you are playing", self.data.GetOpponentName()
         if state == uttt_data.STATE_SHOW_LOGIN:
             self.window.deiconify()
             self.notebook.set_current_page(0)
