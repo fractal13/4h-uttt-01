@@ -213,7 +213,7 @@ class UTTTGame(PygameGame):
                 if marker == uttt_data.PLAYER_X:
                     pygame.draw.circle(surface, (0,0,255), (x, y), 5)
                 elif marker == uttt_data.PLAYER_O:
-                    pygame.draw.circle(surface, (255,0,0), (x, y), 5)
+                    pygame.draw.circle(surface, (0,255,0), (x, y), 5)
         return
 
 def uttt_pygame_main(data, send_queue):
