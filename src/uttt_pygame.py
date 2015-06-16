@@ -10,6 +10,15 @@ class UTTTGame(PygameGame):
         PygameGame.__init__(self, "Ultimate Tic Tac Toe", width_px, height_px, frames_per_second)
         self.data = data
         self.send_queue = send_queue
+        self.z = 0
+        self.x = 0
+        self.c = 0
+        self.n = 0
+        self.b = 0
+        self.m = 0
+        self.a = 0
+        self.s = 0
+        self.v = 0
         return
 
     def handle_state(self):
@@ -80,36 +89,106 @@ class UTTTGame(PygameGame):
                 text = self.data.SendTurn(board, position)
                 print "pygame: queuing: %s" % (text, )
                 self.send_queue.put(text)
+
+        if self.data.GetNextBoard() == -1:
+            self.z = 255
+            self.x = 255
+            self.z = 255
+            self.c = 255
+            self.v = 255
+            self.b = 255
+            self.n = 255
+            self.m = 255
+            self.a = 255
+            self.s = 255
+        else:
+            self.z = 0
+            self.x = 0
+            self.z = 0
+            self.c = 0
+            self.v = 0
+            self.b = 0
+            self.n = 0
+            self.m = 0
+            self.a = 0
+            self.s = 0
+
+        if self.data.GetNextBoard() == 0:
+            self.x = 255
+        else:
+            self.x = 0
+
+        if self.data.GetNextBoard() == 1:
+            self.z = 255
+        else:
+            self.z = 0
+            
+        if self.data.GetNextBoard() == 2:
+            self.c = 255
+        else:
+            self.c = 0
+            
+        if self.data.GetNextBoard() == 3:
+            self.v = 255
+        else:
+            self.v = 0
+            
+        if self.data.GetNextBoard() == 4:
+            self.b = 255
+        else:
+            self.b = 0
+            
+        if self.data.GetNextBoard() == 5:
+            self.n = 255
+        else:
+            self.n = 0
+            
+        if self.data.GetNextBoard() == 6:
+            self.m = 255
+        else:
+            self.m = 0
+            
+        if self.data.GetNextBoard() == 7:
+            self.a = 255
+        else:
+            self.a = 0
+            
+        if self.data.GetNextBoard() == 8:
+            self.s = 255
+        else:
+            self.s = 0
         return
 
     def paint(self, surface):
+    #prints the background
+        
     #middle
         rect = pygame.Rect(self.width/3,self.height/3,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.b,0,0),rect )
     #bottom right
         rect = pygame.Rect(self.height/3*2,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.s,0,0),rect )
     #top right
         rect = pygame.Rect(self.width/3*2,0,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.c,0,0),rect )
     #top middle
         rect = pygame.Rect(self.width/3,0,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.z,0,0),rect )
     #middle left
         rect = pygame.Rect(0,self.height/3,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.v,0,0),rect )
     #top left
         rect = pygame.Rect(0,0,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.x,0,0),rect )
     #bottom left
         rect = pygame.Rect(0,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.m,0,0),rect )
     #middle right
         rect = pygame.Rect(self.height/3*2,self.width/3,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.n,0,0),rect )
     #bottom middle
         rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((0,0,0),rect )
+        surface.fill((self.a,0,0),rect )
     
         # Regular Lines
         for i in range(1,9):
