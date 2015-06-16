@@ -23,8 +23,9 @@ class UTTTGame(PygameGame):
         pygame.mixer.init()
         self.font = pygame.font.SysFont("OCR A Extended",17)
         pygame.mixer.music.load('Mario.mp3')
-        self.goomba = pygame.image.load("goomba.png")
         pygame.mixer.music.play(-1, 0.0)
+        self.goomba = pygame.image.load("goomba.png")
+        self.mario = pygame.image.load("mario.png")
         return
 
     def handle_state(self):
@@ -231,7 +232,8 @@ class UTTTGame(PygameGame):
                     #pygame.draw.circle(surface, (0,0,255), (x, y), 14)
                     surface.blit(self.goomba, (x, y))
                 elif marker == uttt_data.PLAYER_O:
-                    pygame.draw.circle(surface, (0,255,0), (x, y), 14)
+                    #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
+                    surface.blit(self.mario, (x, y))
         return
 
     def drawTextLeft(self, surface, text, color, tX, tY, font):
