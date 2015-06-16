@@ -64,7 +64,7 @@ class UTTTGame(PygameGame):
 
     def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position):
         self.handle_state()
-        
+
         if 1 in newbuttons:
             if self.data.GetNextPlayer() != self.data.GetPlayer():
                 # not our turn
