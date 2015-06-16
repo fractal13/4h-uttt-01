@@ -20,7 +20,10 @@ class UTTTGame(PygameGame):
         self.s = 0
         self.v = 0
         pygame.font.init()
+        pygame.mixer.init()
         self.font = pygame.font.SysFont("OCR A Extended",17)
+        pygame.mixer.music.load('Mario.mp3')
+        pygame.mixer.music.play(-1, 0.0)
         return
 
     def handle_state(self):
@@ -75,7 +78,6 @@ class UTTTGame(PygameGame):
 
     def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position):
         self.handle_state()
-
         if 1 in newbuttons:
             if self.data.GetNextPlayer() != self.data.GetPlayer():
                 # not our turn
