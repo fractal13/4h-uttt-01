@@ -24,6 +24,7 @@ class UTTTGame(PygameGame):
         self.font = pygame.font.SysFont("OCR A Extended",17)
         pygame.mixer.music.load('Mario.mp3')
         pygame.mixer.music.play(-1, 0.0)
+        self.firstTurn = True
         return
 
     def handle_state(self):
@@ -91,9 +92,15 @@ class UTTTGame(PygameGame):
             position = 3 * (row % 3) + (col % 3)
             
             if self.data and self.send_queue:
-                text = self.data.SendTurn(board, position)
-                print "pygame: queuing: %s" % (text, )
-                self.send_queue.put(text)
+                if (self.data.GetNextBoard() == board) and self.firstTurn == False:
+                    text = self.data.SendTurn(board, position)
+                    print "pygame: queuing: %s" % (text, )
+                    self.send_queue.put(text)
+                elif self.firstTurn == True:
+                    text = self.data.SendTurn(board, position)
+                    print "pygame: queuing: %s" % (text, )
+                    self.send_queue.put(text)
+                    self.firstTurn = False
 
         if self.data.GetNextBoard() == -1:
             self.z = 255
