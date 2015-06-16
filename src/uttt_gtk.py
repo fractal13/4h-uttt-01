@@ -277,7 +277,7 @@ class TTTGUI:
             
         state = self.data.GetState()
         print "GTK:CurrentState:", state
-        print "next board is", self.GetNextBoard()
+        print "next board is", self.data.GetNextBoard()
         if state == uttt_data.STATE_SHOW_LOGIN:
             self.window.deiconify()
             self.notebook.set_current_page(0)
