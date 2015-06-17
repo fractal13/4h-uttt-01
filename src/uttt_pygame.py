@@ -74,6 +74,12 @@ class UTTTGame(PygameGame):
             elif state in [ uttt_data.STATE_SOCKET_CLOSED, uttt_data.STATE_SOCKET_ERROR,
                             uttt_data.STATE_ERROR ]:
                 # close
+                if self.data.GetWinner() == PLAYER_N:
+                    print "KEEP GOING"
+                if self.data.GetWinner() == PLAYER_X:
+                    print "You Win"
+                if self.data.GetWinner() == PLAYER_O:
+                    print"You Lose"
                 print "Socket closed, or other error, pygame will quit."
                 pygame.quit()
             elif state in [ uttt_data.STATE_SOCKET_OPEN ]:
@@ -196,6 +202,8 @@ class UTTTGame(PygameGame):
             self.s = 255
         else:
             self.s = 0
+
+        
         return
 
     def paint(self, surface):
