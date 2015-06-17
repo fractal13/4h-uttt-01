@@ -281,7 +281,7 @@ class UTTTGame(PygameGame):
                 marker = self.data.GetMarker(board, position)
                 if marker == uttt_data.PLAYER_X:
                     #pygame.draw.circle(surface, (0,0,255), (x, y), 14)
-                    surface.blit(self.goomba, (x - 15, y - 15))
+                    surface.blit(self.goomba, (x - 25, y - 25))
                 elif marker == uttt_data.PLAYER_O:
                     #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
                     surface.blit(self.mario, (x - 30, y - 30))
