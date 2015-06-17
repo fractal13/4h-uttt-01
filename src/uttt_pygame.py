@@ -22,6 +22,7 @@ class UTTTGame(PygameGame):
         pygame.font.init()
         pygame.mixer.init()
         self.font = pygame.font.SysFont("OCR A Extended",17)
+        self.fontEnd = pygame.font.SysFont("OCR A Extended", 20)
         pygame.mixer.music.load('Mario.mp3')
         pygame.mixer.music.play(-1, 0.0)
         self.coin = pygame.mixer.Sound('coin.wav')
@@ -282,7 +283,7 @@ class UTTTGame(PygameGame):
                 marker = self.data.GetMarker(board, position)
                 if marker == uttt_data.PLAYER_X:
                     #pygame.draw.circle(surface, (0,0,255), (x, y), 14)
-                    surface.blit(self.goomba, (x - 15, y - 15))
+                    surface.blit(self.goomba, (x - 25, y - 25))
                 elif marker == uttt_data.PLAYER_O:
                     #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
                     surface.blit(self.mario, (x - 30, y - 30))
@@ -307,7 +308,16 @@ class UTTTGame(PygameGame):
         x = ((self.data.GetNextBoard())%3)*self.width/3
         y = ((self.data.GetNextBoard())/3)*self.height/3
         rect = pygame.Rect(x,y,self.width/3,self.height/3)
+
         self.drawTransparentRect(surface, (255,0,0,128), rect)
+
+        self.drawTransparentRect(surface, (0,255,0,128), rect)
+
+
+        if self.data.GetWinner() == PLAYER_X:
+            self.drawTextLeft(surface, "Mario saved the princess", (0, 0, 0), 100, 100, self.fontEnd)
+        if self.data.GetWinner() == PLAYER_O:
+            self.drawTextLeft(surface, "You fell in lava", (0, 0, 0), 100, 100, self.fontEnd)
         return
     
     def drawTransparentRect(self, surface, color, rect):
