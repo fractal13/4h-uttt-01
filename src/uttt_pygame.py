@@ -75,11 +75,11 @@ class UTTTGame(PygameGame):
                             uttt_data.STATE_ERROR ]:
                 # close
                 if self.data.GetWinner() == PLAYER_N:
-                    print "KEEP GOING"
+                    print "Save the princess"
                 if self.data.GetWinner() == PLAYER_X:
-                    print "You Win"
+                    print "Mario Saved the princess"
                 if self.data.GetWinner() == PLAYER_O:
-                    print"You Lose"
+                    print"You fell in lava"
                 print "Socket closed, or other error, pygame will quit."
                 pygame.quit()
             elif state in [ uttt_data.STATE_SOCKET_OPEN ]:
