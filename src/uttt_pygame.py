@@ -206,40 +206,47 @@ class UTTTGame(PygameGame):
         
         return
 
-    def paint(self, surface):
+    def  paint(self, surface):
     #prints the background
-        
+        #for board in range(9):
+            #x = (board % 3)*self.width/3
+            #y = (board / 3)
+            #w = self.width/3
+            #h = self.height/3
+            #rect= pygame.Rect(x,y,h,w)
+            #pygame.draw.rect(surface,color,rect)
     #middle
-        rect = pygame.Rect(self.width/3,self.height/3,self.width/3,self.height/3)
-        surface.fill((self.b,0,0),rect )
+        #rect = pygame.Rect(self.width/3,self.height/3,self.width/3,self.height/3)
+        #surface.fill((self.b,0,0),rect )
     #bottom right
-        rect = pygame.Rect(self.height/3*2,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((self.s,0,0),rect )
+        #rect = pygame.Rect(self.height/3*2,self.height/3*2,self.width/3,self.height/3)
+        #surface.fill((self.s,0,0),rect )
     #top right
-        rect = pygame.Rect(self.width/3*2,0,self.width/3,self.height/3)
-        surface.fill((self.c,0,0),rect )
+        #rect = pygame.Rect(self.width/3*2,0,self.width/3,self.height/3)
+        #surface.fill((self.c,0,0),rect )
     #top middle
-        rect = pygame.Rect(self.width/3,0,self.width/3,self.height/3)
-        surface.fill((self.z,0,0),rect )
+        #rect = pygame.Rect(self.width/3,0,self.width/3,self.height/3)
+        #surface.fill((self.z,0,0),rect )
     #middle left
-        rect = pygame.Rect(0,self.height/3,self.width/3,self.height/3)
-        surface.fill((self.v,0,0),rect )
+        #rect = pygame.Rect(0,self.height/3,self.width/3,self.height/3)
+        #surface.fill((self.v,0,0),rect )
     #top left
-        rect = pygame.Rect(0,0,self.width/3,self.height/3)
-        surface.fill((self.x,0,0),rect )
+        #rect = pygame.Rect(0,0,self.width/3,self.height/3)
+        #surface.fill((self.x,0,0),rect )
     #bottom left
-        rect = pygame.Rect(0,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((self.m,0,0),rect )
+        #rect = pygame.Rect(0,self.height/3*2,self.width/3,self.height/3)
+        #surface.fill((self.m,0,0),rect )
     #middle right
-        rect = pygame.Rect(self.height/3*2,self.width/3,self.width/3,self.height/3)
-        surface.fill((self.n,0,0),rect )
+        #rect = pygame.Rect(self.height/3*2,self.width/3,self.width/3,self.height/3)
+        #surface.fill((self.n,0,0),rect )
     #bottom middle
-        rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
-        surface.fill((self.a,0,0),rect )
+        #rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
+        #surface.fill((self.a,0,0),rect )
 
+        
     # Background
         surface.blit(self.bg2, (0,0))
-
+        
     # HUD
         opponent = "You are playing: " + self.data.GetOpponentName()
         self.drawTextLeft(surface, opponent, (0, 0, 0), 25, 35, self.font)
@@ -277,8 +284,21 @@ class UTTTGame(PygameGame):
                 elif marker == uttt_data.PLAYER_O:
                     #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
                     surface.blit(self.mario, (x - 30, y - 30))
+        
+        x = ((self.data.GetNextBoard())%3)*self.width/3
+        y = ((self.data.GetNextBoard())/3)*self.height/3
+        rect = pygame.Rect(x,y,self.width/3,self.height/3)
+        self.drawTransparentRect(surface, (0,255,0,128), rect)
         return
-
+    
+    def drawTransparentRect(self, surface, color, rect):
+        rect_surface = pygame.Surface( (rect.width, rect.height), pygame.locals.SRCALPHA )
+        rect_surface.fill( (0,0,0,0) )
+        r = pygame.Rect(0, 0, rect.width, rect.height)
+        pygame.draw.rect(rect_surface, color, r)
+        surface.blit(rect_surface, (rect.left, rect.top))
+        return
+    
     def drawTextLeft(self, surface, text, color, tX, tY, font):
         textobj = font.render(text, False, color)
         textrect = textobj.get_rect()
