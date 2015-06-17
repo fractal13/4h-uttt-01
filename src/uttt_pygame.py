@@ -272,6 +272,8 @@ class UTTTGame(PygameGame):
 
         # Markers
         for board in range(9):
+
+
             for position in range(9):
                 col = 3 * (board % 3) + position % 3
                 row = 3 * (board / 3) + position / 3
@@ -284,11 +286,28 @@ class UTTTGame(PygameGame):
                 elif marker == uttt_data.PLAYER_O:
                     #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
                     surface.blit(self.mario, (x - 30, y - 30))
-        
+        for board in range(9):
+            x = ((board)%3)*self.width/3
+            y = ((board)/3)*self.height/3
+            boardOwner = self.data.GetBoardOwner(board)
+
+            if boardOwner == PLAYER_O:
+                rect = pygame.Rect(x,y,self.width/3,self.height/3)
+                self.drawTransparentRect(surface, (0,255,0,128), rect)
+
+            elif boardOwner == PLAYER_X:
+                print boardOwner
+                rect = pygame.Rect(x,y,self.width/3,self.height/3)
+                self.drawTransparentRect(surface, (0,0,255,128), rect)
+
+            else:
+                pass
+
+
         x = ((self.data.GetNextBoard())%3)*self.width/3
         y = ((self.data.GetNextBoard())/3)*self.height/3
         rect = pygame.Rect(x,y,self.width/3,self.height/3)
-        self.drawTransparentRect(surface, (0,255,0,128), rect)
+        self.drawTransparentRect(surface, (255,0,0,128), rect)
         return
     
     def drawTransparentRect(self, surface, color, rect):
