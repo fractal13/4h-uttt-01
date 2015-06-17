@@ -24,6 +24,7 @@ class UTTTGame(PygameGame):
         self.font = pygame.font.SysFont("OCR A Extended",17)
         pygame.mixer.music.load('Mario.mp3')
         pygame.mixer.music.play(-1, 0.0)
+        self.coin = pygame.mixer.Sound('coin.wav')
         self.firstTurn = True
         self.goomba = pygame.image.load("goomba.png")
         self.mario = pygame.image.load("mario.png")
@@ -91,6 +92,10 @@ class UTTTGame(PygameGame):
                 print "YOU LITTLE REBEL"
                 return
 
+        if 1 in newbuttons:
+            self.coin.play()
+            print "working"
+            
             mX,mY = mouse_position[0], mouse_position[1]
             col = mX / (self.width/9)
             row = mY / (self.height/9)
@@ -107,6 +112,7 @@ class UTTTGame(PygameGame):
                     print "pygame: queuing: %s" % (text, )
                     self.send_queue.put(text)
                     self.firstTurn = False
+
         if pygame.K_m in newkeys:
             if self.mute == False:
                 self.mute = True
@@ -223,19 +229,17 @@ class UTTTGame(PygameGame):
         rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
         surface.fill((self.a,0,0),rect )
 
-    # Background
-        surface.blit(self.bg2, (0,0))
-
     # HUD
         opponent = "You are playing: " + self.data.GetOpponentName()
-        self.drawTextLeft(surface, opponent, (0, 0, 0), 25, 35, self.font)
+        self.drawTextLeft(surface, opponent, (255, 251, 0), 25, 35, self.font)
 
         currentTurn = "It is " + self.data.GetNextPlayer() + "'s turn"
-        self.drawTextLeft(surface, currentTurn, (0, 0, 0), 25, 45, self.font)
+        self.drawTextLeft(surface, currentTurn, (255, 251, 0), 25, 45, self.font)
 
         you = "You are " + self.data.GetPlayer() + "s"
-        self.drawTextLeft(surface, you, (0, 0, 0), 25, 55, self.font)
-
+        self.drawTextLeft(surface, you, (255, 251, 0), 25, 55, self.font)
+        
+    
         # Regular Lines
         for i in range(1,9):
             pygame.draw.line(surface, (255,255,255), (0, i*self.height/9), (self.width, i*self.height/9))
