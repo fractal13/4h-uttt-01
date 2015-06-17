@@ -105,7 +105,8 @@ class UTTTGame(PygameGame):
                     print "pygame: queuing: %s" % (text, )
                     self.send_queue.put(text)
                     self.firstTurn = False
-
+        if pygame.K_m in newkeys:
+            pygame.mixer.music.stop()
         if self.data.GetNextBoard() == -1:
             self.z = 255
             self.x = 255
