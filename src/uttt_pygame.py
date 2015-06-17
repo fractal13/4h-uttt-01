@@ -206,18 +206,18 @@ class UTTTGame(PygameGame):
         rect = pygame.Rect(self.width/3,self.height/3*2,self.width/3,self.height/3)
         surface.fill((self.a,0,0),rect )
 
-    # HUD
-        opponent = "You are playing: " + self.data.GetOpponentName()
-        self.drawTextLeft(surface, opponent, (255, 251, 0), 25, 35, self.font)
-
-        currentTurn = "It is " + self.data.GetNextPlayer() + "'s turn"
-        self.drawTextLeft(surface, currentTurn, (255, 251, 0), 25, 45, self.font)
-
-        you = "You are " + self.data.GetPlayer() + "s"
-        self.drawTextLeft(surface, you, (255, 251, 0), 25, 55, self.font)
-        
     # Background
         surface.blit(self.bg2, (0,0))
+
+    # HUD
+        opponent = "You are playing: " + self.data.GetOpponentName()
+        self.drawTextLeft(surface, opponent, (0, 0, 0), 25, 35, self.font)
+
+        currentTurn = "It is " + self.data.GetNextPlayer() + "'s turn"
+        self.drawTextLeft(surface, currentTurn, (0, 0, 0), 25, 45, self.font)
+
+        you = "You are " + self.data.GetPlayer() + "s"
+        self.drawTextLeft(surface, you, (0, 0, 0), 25, 55, self.font)
 
         # Regular Lines
         for i in range(1,9):
