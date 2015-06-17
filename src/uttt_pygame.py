@@ -127,7 +127,7 @@ class UTTTGame(PygameGame):
                 pygame.mixer.music.pause()
             elif self.pause == True:
                 self.pause = False
-                pygame.mixer.music.play()
+                pygame.mixer.music.unpause()
                 
         if self.data.GetNextBoard() == -1:
             self.z = 255
