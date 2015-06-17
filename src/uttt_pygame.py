@@ -22,6 +22,7 @@ class UTTTGame(PygameGame):
         pygame.font.init()
         pygame.mixer.init()
         self.font = pygame.font.SysFont("OCR A Extended",17)
+        self.fontEnd = pygame.font.SysFont("OCR A Extended", 20)
         pygame.mixer.music.load('Mario.mp3')
         pygame.mixer.music.play(-1, 0.0)
         self.coin = pygame.mixer.Sound('coin.wav')
@@ -289,6 +290,12 @@ class UTTTGame(PygameGame):
         y = ((self.data.GetNextBoard())/3)*self.height/3
         rect = pygame.Rect(x,y,self.width/3,self.height/3)
         self.drawTransparentRect(surface, (0,255,0,128), rect)
+
+    # End
+        if self.data.GetWinner() == PLAYER_X:
+            self.drawTextLeft(surface, "Mario saved the princess", (0, 0, 0), 100, 100, self.fontEnd)
+        if self.data.GetWinner() == PLAYER_O:
+            self.drawTextLeft(surface, "You fell in lava", (0, 0, 0), 100, 100, self.fontEnd)
         return
     
     def drawTransparentRect(self, surface, color, rect):
