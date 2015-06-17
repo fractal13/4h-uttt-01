@@ -28,7 +28,9 @@ class UTTTGame(PygameGame):
         self.goomba = pygame.image.load("goomba.png")
         self.mario = pygame.image.load("mario.png")
         self.bg = pygame.image.load("bg1.png")
-        self.bg2 = pygame.image.load("bg2Cropped.png")
+        self.bg2 = pygame.image.load("bg2Cropped2.png")
+        self.mute = False
+        self.pause = False
         return
 
     def handle_state(self):
@@ -106,7 +108,21 @@ class UTTTGame(PygameGame):
                     self.send_queue.put(text)
                     self.firstTurn = False
         if pygame.K_m in newkeys:
-            pygame.mixer.music.stop()
+            if self.mute == False:
+                self.mute = True
+                pygame.mixer.music.set_volume(0.0)
+            elif self.mute == True:
+                self.mute = False
+                pygame.mixer.music.set_volume(0.5)
+
+        if pygame.K_p in newkeys:
+            if self.pause == False:
+                self.pause = True
+                pygame.mixer.music.pause()
+            elif self.pause == False:
+                self.mute = True
+                pygame.mixer.music.play()
+                
         if self.data.GetNextBoard() == -1:
             self.z = 255
             self.x = 255
