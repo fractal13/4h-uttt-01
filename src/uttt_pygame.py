@@ -24,11 +24,10 @@ class UTTTGame(PygameGame):
         self.font = pygame.font.SysFont("OCR A Extended",17)
         pygame.mixer.music.load('Mario.mp3')
         pygame.mixer.music.play(-1, 0.0)
+        self.coin = pygame.mixer.Sound('coin.wav')
         self.firstTurn = True
         self.goomba = pygame.image.load("goomba.png")
         self.mario = pygame.image.load("mario.png")
-        self.bg = pygame.image.load("bg1.png")
-        self.bg2 = pygame.image.load("bg2Cropped.png")
         return
 
     def handle_state(self):
@@ -89,6 +88,10 @@ class UTTTGame(PygameGame):
                 print "YOU LITTLE REBEL"
                 return
 
+        if 1 in newbuttons:
+            self.coin.play()
+            print "working"
+            
             mX,mY = mouse_position[0], mouse_position[1]
             col = mX / (self.width/9)
             row = mY / (self.height/9)
@@ -216,9 +219,7 @@ class UTTTGame(PygameGame):
         you = "You are " + self.data.GetPlayer() + "s"
         self.drawTextLeft(surface, you, (255, 251, 0), 25, 55, self.font)
         
-    # Background
-        surface.blit(self.bg2, (0,0))
-
+    
         # Regular Lines
         for i in range(1,9):
             pygame.draw.line(surface, (255,255,255), (0, i*self.height/9), (self.width, i*self.height/9))
