@@ -105,7 +105,8 @@ class UTTTGame(PygameGame):
                     print "pygame: queuing: %s" % (text, )
                     self.send_queue.put(text)
                     self.firstTurn = False
-
+        if pygame.K_m in newkeys:
+            pygame.mixer.music.stop()
         if self.data.GetNextBoard() == -1:
             self.z = 255
             self.x = 255
@@ -241,10 +242,10 @@ class UTTTGame(PygameGame):
                 marker = self.data.GetMarker(board, position)
                 if marker == uttt_data.PLAYER_X:
                     #pygame.draw.circle(surface, (0,0,255), (x, y), 14)
-                    surface.blit(self.goomba, (x, y))
+                    surface.blit(self.goomba, (x - 15, y - 15))
                 elif marker == uttt_data.PLAYER_O:
                     #pygame.draw.circle(surface, (0,255,0), (x, y), 14)
-                    surface.blit(self.mario, (x, y))
+                    surface.blit(self.mario, (x - 30, y - 30))
         return
 
     def drawTextLeft(self, surface, text, color, tX, tY, font):
